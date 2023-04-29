@@ -21,7 +21,12 @@ SELECT COUNT(DISTINCT Hybrid_name),COUNT(DISTINCT Crop),COUNT(DISTINCT Maturity)
 SELECT DISTINCT Crop,COUNT(Hybrid_name)  FROM Seed_Info
 GROUP BY Crop
 ORDER BY Crop ASC;
-
+SELECT
+  MIN(Maturity) AS min,
+  MAX(Maturity) AS max,
+  AVG(Maturity) AS mean
+FROM Seed_Info;
+ 
 
 DESCRIBE State_Info;
 SELECT COUNT(*) FROM State_Info;
