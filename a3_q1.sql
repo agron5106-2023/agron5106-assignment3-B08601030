@@ -17,7 +17,7 @@ GROUP BY Parent_company;
 DESCRIBE Seed_Info;
 SELECT * FROM Seed_Info;
 SELECT COUNT(*) FROM Seed_Info;
-SELECT COUNT(DISTINCT Crop) FROM Seed_Info;
+SELECT COUNT(DISTINCT Hybrid_name),COUNT(DISTINCT Crop),COUNT(DISTINCT Maturity) FROM Seed_Info;
 SELECT DISTINCT Crop,COUNT(Hybrid_name)  FROM Seed_Info
 GROUP BY Crop
 ORDER BY Crop ASC;
