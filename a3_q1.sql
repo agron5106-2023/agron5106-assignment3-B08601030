@@ -44,7 +44,15 @@ GROUP BY Crop
 ORDER BY Crop ASC;
 
 DESCRIBE State_Info;
-SELECT COUNT(*) FROM State_Info;
+SELECT * FROM State_Info;
+SELECT COUNT(*),
+	COUNT( DISTINCT State_name),
+	COUNT( DISTINCT Two_letters),
+	MIN(LENGTH(State_name)),
+	MAX(LENGTH(State_name))
+FROM State_Info;
+
+SELECT  AS min_length_com, MAX(LENGTH(Company_name)) AS max_l
 
 DESCRIBE Farm_Info;
 SELECT COUNT(*) FROM Farm_Info;
