@@ -6,6 +6,7 @@ DESCRIBE Company_Info;
 SELECT COUNT(*) FROM Company_Info;
 SELECT  COUNT(Company_name) FROM Company_Info;
 SELECT  COUNT(DISTINCT Company_name) FROM Company_Info;
+SELECT  COUNT(DISTINCT Parent_company) FROM Company_Info;
 
 DESCRIBE Seed_Info;
 SELECT COUNT(*) FROM Seed_Info;
