@@ -52,10 +52,20 @@ SELECT COUNT(*),
 	MAX(LENGTH(State_name))
 FROM State_Info;
 
-SELECT  AS min_length_com, MAX(LENGTH(Company_name)) AS max_l
 
 DESCRIBE Farm_Info;
-SELECT COUNT(*) FROM Farm_Info;
+SELECT * FROM Farm_Info;
+SELECT COUNT(*),
+	COUNT(DISTINCT Farm_name),
+	COUNT(DISTINCT Soil_type) 
+FROM Farm_Info;
+SELECT 
+    Soil_type,
+    Irrigation,
+    COUNT(DISTINCT Farm_name) AS Num_Farms,
+    (SELECT COUNT(DISTINCT Farm_name) FROM Farm_Info WHERE Soil_type = fi.Soil_type) AS Total_Farms
+FROM Farm_Info fi
+GROUP BY Soil_type, Irrigation;
 
 DESCRIBE Trial_Info;
 SELECT COUNT(*) FROM Trial_Info;
