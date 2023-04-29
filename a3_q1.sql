@@ -18,16 +18,30 @@ DESCRIBE Seed_Info;
 SELECT * FROM Seed_Info;
 SELECT COUNT(*) FROM Seed_Info;
 SELECT COUNT(DISTINCT Hybrid_name),COUNT(DISTINCT Crop),COUNT(DISTINCT Maturity) FROM Seed_Info;
-SELECT DISTINCT Crop,COUNT(Hybrid_name)  FROM Seed_Info
-GROUP BY Crop
-ORDER BY Crop ASC;
 SELECT
   MIN(Maturity) AS min,
   MAX(Maturity) AS max,
   ROUND(AVG(Maturity)) AS mean,
   ROUND(VARIANCE(Maturity))AS variance
 FROM Seed_Info;
- 
+
+SELECT 
+  DISTINCT Crop,
+  COUNT(Hybrid_name),
+  MIN(Maturity) AS min_maturity,
+  MAX(Maturity) AS max_maturity,
+  ROUND(AVG(Maturity)) AS mean,
+  ROUND(VARIANCE(Maturity))AS variance
+FROM Seed_Info
+GROUP BY Crop
+ORDER BY Crop ASC;
+
+SELECT Crop, 
+       (SELECT Hybrid_name FROM Seed_Info s2 WHERE s2.Crop = s1.Crop ORDER BY Maturity DESC LIMIT 1) AS MaxMaturityHybrid,
+       (SELECT Hybrid_name FROM Seed_Info s3 WHERE s3.Crop = s1.Crop ORDER BY Maturity ASC LIMIT 1) AS MinMaturityHybrid
+FROM Seed_Info s1
+GROUP BY Crop
+ORDER BY Crop ASC;
 
 DESCRIBE State_Info;
 SELECT COUNT(*) FROM State_Info;
