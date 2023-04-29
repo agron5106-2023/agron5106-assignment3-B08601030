@@ -7,6 +7,9 @@ SELECT COUNT(*) FROM Company_Info;
 SELECT  COUNT(Company_name) FROM Company_Info;
 SELECT  COUNT(DISTINCT Company_name) FROM Company_Info;
 SELECT  COUNT(DISTINCT Parent_company) FROM Company_Info;
+SELECT MIN(LENGTH(Company_name)) AS min_length_com, MAX(LENGTH(Company_name)) AS max_length_com,
+MIN(LENGTH(Parent_company)) AS min_length_pc, MAX(LENGTH(Parent_company)) AS max_length_pc
+FROM Company_Info;
 
 DESCRIBE Seed_Info;
 SELECT COUNT(*) FROM Seed_Info;
