@@ -83,6 +83,15 @@ SELECT
 	ROUND(VARIANCE(Disease_rating))VarDis
 FROM Trial_Info;
 
+SELECT COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Trial_Info) AS Percentage_Under_Mean
+FROM Trial_Info
+WHERE Yield < (SELECT AVG(Yield) FROM Trial_Info);
+
+SELECT COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Trial_Info) AS Percentage_Under_Mean
+FROM Trial_Info
+WHERE Disease_rating  < (SELECT AVG(Disease_rating) FROM Trial_Info);
+
+
 DESCRIBE Employee_Info;
 SELECT COUNT(*) FROM Employee_Info;
 
