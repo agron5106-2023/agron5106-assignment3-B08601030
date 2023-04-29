@@ -68,7 +68,20 @@ FROM Farm_Info fi
 GROUP BY Soil_type, Irrigation;
 
 DESCRIBE Trial_Info;
-SELECT COUNT(*) FROM Trial_Info;
+SELECT * FROM Trial_Info;
+SELECT 
+	COUNT(*),
+	COUNT(Yield),
+	COUNT(Disease_rating),
+	ROUND(MIN(Yield)) AS MinYield,
+	ROUND(MAX(Yield)) AS MaxYield,
+	ROUND(AVG(Yield)) AS AvgYield,
+	ROUND(VARIANCE(Yield))VarYield,
+	ROUND(MIN(Disease_rating)) AS MinDis,
+	ROUND(MAX(Disease_rating)) AS MaxDis,
+	ROUND(AVG(Disease_rating)) AS AvgDis,
+	ROUND(VARIANCE(Disease_rating))VarDis
+FROM Trial_Info;
 
 DESCRIBE Employee_Info;
 SELECT COUNT(*) FROM Employee_Info;
