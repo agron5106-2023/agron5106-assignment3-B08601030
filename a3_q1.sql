@@ -24,7 +24,8 @@ ORDER BY Crop ASC;
 SELECT
   MIN(Maturity) AS min,
   MAX(Maturity) AS max,
-  AVG(Maturity) AS mean
+  ROUND(AVG(Maturity)) AS mean,
+  ROUND(VARIANCE(Maturity))AS variance
 FROM Seed_Info;
  
 
