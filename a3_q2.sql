@@ -5,9 +5,7 @@ DESCRIBE Company_Info;
 DESCRIBE Seed_Info;
 
 SELECT Company_name,
-    COUNT(*) AS No_seed ,
-    COUNT(DISTINCT Crop) AS No_crop,
-    ROUND(AVG(Maturity))
+    COUNT(*) AS No_seed 
 FROM Company_Info  
 JOIN Seed_Info 
 ON Company_Info.Company_ID =Seed_Info.Company_id
@@ -20,3 +18,16 @@ JOIN Seed_Info
 ON Company_Info.Company_ID =Seed_Info.Company_id
 GROUP BY Parent_company
 ORDER BY COUNT(*) DESC; 
+
+SELECT Company_name,
+    COUNT(DISTINCT Crop) AS No_crop,
+    ROUND(MIN(Maturity)) AS min_maturity,
+    ROUND(MAX(Maturity)) AS max_maturity,
+    ROUND(AVG(Maturity)) AS mean_maturity,
+    ROUND(VARIANCE(Maturity)) AS var_maturity
+FROM Company_Info  
+JOIN Seed_Info 
+ON Company_Info.Company_ID =Seed_Info.Company_id
+GROUP BY Company_name
+ORDER BY COUNT(DISTINCT Crop); 
+
