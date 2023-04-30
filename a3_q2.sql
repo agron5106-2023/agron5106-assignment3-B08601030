@@ -10,3 +10,10 @@ JOIN Seed_Info
 ON Company_Info.Company_ID =Seed_Info.Company_id
 GROUP BY Company_name
 ORDER BY COUNT(*) DESC; 
+
+SELECT Parent_company,COUNT(*) AS No_seed 
+FROM Company_Info  
+JOIN Seed_Info 
+ON Company_Info.Company_ID =Seed_Info.Company_id
+GROUP BY Parent_company
+ORDER BY COUNT(*) DESC; 
