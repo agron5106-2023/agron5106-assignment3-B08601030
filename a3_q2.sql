@@ -29,5 +29,6 @@ FROM Company_Info
 JOIN Seed_Info 
 ON Company_Info.Company_ID =Seed_Info.Company_id
 GROUP BY Company_name
-ORDER BY COUNT(DISTINCT Crop); 
+ORDER BY COUNT(DISTINCT Crop)DESC LIMIT 5; 
+
 
