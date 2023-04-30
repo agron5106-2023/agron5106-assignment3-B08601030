@@ -4,7 +4,10 @@ USE A3_farm_records;
 DESCRIBE Company_Info;
 DESCRIBE Seed_Info;
 
-SELECT Company_name,COUNT(*) AS No_seed 
+SELECT Company_name,
+    COUNT(*) AS No_seed ,
+    COUNT(DISTINCT Crop) AS No_crop,
+    ROUND(AVG(Maturity))
 FROM Company_Info  
 JOIN Seed_Info 
 ON Company_Info.Company_ID =Seed_Info.Company_id
