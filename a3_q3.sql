@@ -8,10 +8,13 @@ SELECT State_name,COUNT(Farm_name)
 FROM State_Info 
 JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
 GROUP BY State_name 
-HAVING COUNT(Farm_name)>6
+#HAVING COUNT(Farm_name)>6
 ORDER BY COUNT(Farm_name)DESC;
 
-SELECT State_name,Irrigation,COUNT(Farm_name)
+SELECT 
+	State_name,
+	Irrigation,
+	COUNT(Farm_name)
 FROM State_Info 
 JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
 GROUP BY State_name,Irrigation 
@@ -23,7 +26,10 @@ JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id
 GROUP BY Irrigation
 ORDER BY COUNT(Farm_name)DESC;
 
-SELECT State_name,COUNT(Farm_name)
+SELECT 
+	State_name,
+	COUNT(Farm_name)
+	#COUNT(Farm_name)/Total_farms
 FROM State_Info 
 JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
 GROUP BY State_name,Irrigation 
@@ -36,4 +42,13 @@ JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id
 GROUP BY State_name,Irrigation 
 HAVING Irrigation =0
 ORDER BY COUNT(Farm_name)DESC;
+
+SELECT State_name, 
+       COUNT(Farm_name) AS Farm_count,
+       100.0 * COUNT(CASE WHEN Irrigation = 1 THEN 1 END) / (SELECT COUNT(*) FROM Farm_Info WHERE State_id = State_Info.State_ID) AS Irrigation_ratio,
+       100.0 * COUNT(CASE WHEN Irrigation = 0 THEN 1 END) / (SELECT COUNT(*) FROM Farm_Info WHERE State_id = State_Info.State_ID) AS Non_irrigation_ratio
+FROM State_Info 
+JOIN Farm_Info ON State_Info.State_ID = Farm_Info.State_id 
+GROUP BY State_name 
+ORDER BY Irrigation_ratio DESC;
 
