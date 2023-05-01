@@ -29,7 +29,6 @@ ORDER BY COUNT(Farm_name)DESC;
 SELECT 
 	State_name,
 	COUNT(Farm_name)
-	#COUNT(Farm_name)/Total_farms
 FROM State_Info 
 JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
 GROUP BY State_name,Irrigation 
@@ -52,3 +51,12 @@ JOIN Farm_Info ON State_Info.State_ID = Farm_Info.State_id
 GROUP BY State_name 
 ORDER BY Irrigation_ratio DESC;
 
+SELECT 
+	State_name,
+	Soil_type ,
+	COUNT(Farm_name),
+	100.0 * COUNT(Farm_name) / (SELECT COUNT(*) FROM Farm_Info WHERE State_id = State_Info.State_ID) AS Soil_ratio
+FROM State_Info 
+JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
+GROUP BY Soil_type,State_name
+ORDER BY COUNT(Farm_name)DESC;
