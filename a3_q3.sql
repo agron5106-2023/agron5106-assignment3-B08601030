@@ -30,3 +30,10 @@ GROUP BY State_name,Irrigation
 HAVING Irrigation =1
 ORDER BY COUNT(Farm_name)DESC;
 
+SELECT State_name,COUNT(Farm_name)
+FROM State_Info 
+JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
+GROUP BY State_name,Irrigation 
+HAVING Irrigation =0
+ORDER BY COUNT(Farm_name)DESC;
+
