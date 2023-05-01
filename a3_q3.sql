@@ -59,4 +59,5 @@ SELECT
 FROM State_Info 
 JOIN Farm_Info ON State_Info.State_ID =Farm_Info.State_id 
 GROUP BY Soil_type,State_name
+HAVING Soil_ratio=100
 ORDER BY COUNT(Farm_name)DESC;
